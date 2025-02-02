@@ -63,7 +63,7 @@ func TestAddGetDelete(t *testing.T) {
 	recievedParcel, err = store.Get(number)
 
 	require.Error(t, err)
-	assert.Nil(t, recievedParcel)
+	assert.Empty(t, recievedParcel)
 
 }
 

@@ -38,10 +38,10 @@ func (s ParcelStore) Get(number int) (Parcel, error) {
 	// здесь из таблицы должна вернуться только одна строка
 	p := Parcel{}
 
-	row := s.db.QueryRow("SELECT number, client, status, address, created_at FROM parcel WHERE number = :number",
+	row := s.db.QueryRow("SELECT client, status, address, created_at FROM parcel WHERE number = :number",
 		sql.Named("number", number))
 
-	err := row.Scan(&p.Number, &p.Client, &p.Status, &p.Address, &p.CreatedAt)
+	err := row.Scan(&p.Client, &p.Status, &p.Address, &p.CreatedAt)
 	if err != nil {
 		if err == sql.ErrNoRows {
 			return p, fmt.Errorf("parcel not found")
